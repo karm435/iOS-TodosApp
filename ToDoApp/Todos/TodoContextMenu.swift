@@ -14,13 +14,17 @@ struct TodoContextMenu: View {
             Button(action: {}, label: {
                 HStack{
                     Text("Complete")
+                        .foregroundColor(.green)
                     Image(systemName: "checkmark.circle.fill")
+                        .foregroundColor(.green)
                 }
             })
             Button(action: {}, label: {
                     HStack{
                         Text("Delete")
+                            .foregroundColor(.red)
                         Image(systemName: "trash")
+                            .foregroundColor(.red)
                     }
             })
         }
