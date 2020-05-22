@@ -22,7 +22,7 @@ One of my colleague suggested WWDC videos and watch them in the order.
 
 * [SwiftUI Essentials](https://developer.apple.com/videos/play/wwdc2019/216/)
 * [Data Flow Through SwiftU](https://developer.apple.com/videos/play/wwdc2019/226/)
-* [ntroducing SwiftUI: Building your first app](https://developer.apple.com/videos/play/wwdc2019/204/)
+* [introducing SwiftUI: Building your first app](https://developer.apple.com/videos/play/wwdc2019/204/)
 * [Mastering Xcode Previews](https://developer.apple.com/videos/play/wwdc2019/233/)
 * [Protocol-Oriented Programming in Swift](https://developer.apple.com/videos/play/wwdc2015/408/)
 * [Building Better Apps with Value Types in Swift](https://developer.apple.com/videos/play/wwdc2015/414)
