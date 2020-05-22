@@ -9,9 +9,18 @@
 import SwiftUI
 
 struct TodoContextMenu: View {
+    let todo: Todo
+    @EnvironmentObject var userData: UserData
+    
+    var todoIndex: Int {
+        return userData.todos.firstIndex(where: { $0.id == todo.id })!
+    }
+    
     var body: some View {
         HStack{
-            Button(action: {}, label: {
+            Button(action: {
+                self.userData.todos[self.todoIndex].isCompleted.toggle()
+            }, label: {
                 HStack{
                     Text("Complete")
                         .foregroundColor(.green)
@@ -19,7 +28,9 @@ struct TodoContextMenu: View {
                         .foregroundColor(.green)
                 }
             })
-            Button(action: {}, label: {
+            Button(action: {
+                self.userData.todos.remove(at: self.todoIndex)
+            }, label: {
                     HStack{
                         Text("Delete")
                             .foregroundColor(.red)
@@ -33,6 +44,7 @@ struct TodoContextMenu: View {
 
 struct TodoContextMenu_Previews: PreviewProvider {
     static var previews: some View {
-        TodoContextMenu()
+        TodoContextMenu(todo: Todo(id: 0, task: "Todo", isCompleted: false))
+        .environmentObject(UserData())
     }
 }

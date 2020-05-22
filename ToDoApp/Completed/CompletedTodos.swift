@@ -12,7 +12,16 @@ struct CompletedTodos: View {
     @EnvironmentObject var userData: UserData
     
     var body: some View {
-        Text("Show Completed Todos here")
+        List {
+            ForEach(self.userData.todos){ todo in
+                if todo.isCompleted {
+                    CompletedTodoRow(todo: todo)
+                }
+            }
+            Spacer()
+            
+            .edgesIgnoringSafeArea(.top)
+        }
     }
 }
 
