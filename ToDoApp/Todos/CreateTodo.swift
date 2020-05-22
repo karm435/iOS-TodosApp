@@ -27,7 +27,7 @@ struct CreateTodo: View {
             
             
             ForEach(userData.todos) { todo in
-                Text("\(todo.task) \n ")
+                TodoRow(todo: todo)
             }
            
             
@@ -45,5 +45,6 @@ struct CreateTodo: View {
 struct CreateTodo_Previews: PreviewProvider {
     static var previews: some View {
         CreateTodo(todoTask: "")
+        .environmentObject(UserData())
     }
 }

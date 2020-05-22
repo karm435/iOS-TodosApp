@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct CompletedTodos: View {
+    @EnvironmentObject var userData: UserData
+    
     var body: some View {
         Text("Show Completed Todos here")
     }
@@ -17,5 +19,6 @@ struct CompletedTodos: View {
 struct CompletedTodos_Previews: PreviewProvider {
     static var previews: some View {
         CompletedTodos()
+        .environmentObject(UserData())
     }
 }

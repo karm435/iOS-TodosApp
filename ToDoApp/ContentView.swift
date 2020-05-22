@@ -16,7 +16,7 @@ struct ContentView: View {
                     Image(systemName: "pencil.and.ellipsis.rectangle")
                     Text("Todos")
                         .font(.title)
-                }
+                }			
             CompletedTodos()
                 .tabItem {
                     Image(systemName: "checkmark.circle.fill")
