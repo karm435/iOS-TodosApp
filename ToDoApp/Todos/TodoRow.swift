@@ -20,8 +20,9 @@ struct TodoRow: View {
                 .frame(width: 200, alignment: .leading)
                 .lineLimit(1)
                 .contextMenu(menuItems: {
-                    TodoContextMenu()
+                    TodoContextMenu(todo: todo)
                 })
+            Spacer()
         }
     }
 }

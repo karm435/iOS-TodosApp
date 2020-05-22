@@ -23,7 +23,6 @@ struct ContentView: View {
                     Text("Completed")
                         .font(.title)
             }
-            .edgesIgnoringSafeArea(.all)
         }
     }
 }

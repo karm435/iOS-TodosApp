@@ -27,11 +27,14 @@ struct CreateTodo: View {
             
             
             ForEach(userData.todos) { todo in
-                TodoRow(todo: todo)
+                if !todo.isCompleted {
+                    TodoRow(todo: todo)
+                }
             }
            
             
             Spacer()
+            .edgesIgnoringSafeArea(.top)
         }
     }
     
