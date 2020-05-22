@@ -1,5 +1,20 @@
 # iOS-TodosApp
 
+## Features
+
+* Create a new Todo
+* Context menu to Complete or Delete a Todo
+
+### upcoming
+
+* Show completed tasks
+* Add Priority
+* Add Date
+* Add Location
+* Add Notification
+
+# Learning path
+
 This is the very first Swift app after learning for 2 weeks straight. 
 
 So I would like to share the journy and what did I do to achieve this Goal. 
@@ -22,7 +37,7 @@ One of my colleague suggested WWDC videos and watch them in the order.
 
 * [SwiftUI Essentials](https://developer.apple.com/videos/play/wwdc2019/216/)
 * [Data Flow Through SwiftU](https://developer.apple.com/videos/play/wwdc2019/226/)
-* [ntroducing SwiftUI: Building your first app](https://developer.apple.com/videos/play/wwdc2019/204/)
+* [introducing SwiftUI: Building your first app](https://developer.apple.com/videos/play/wwdc2019/204/)
 * [Mastering Xcode Previews](https://developer.apple.com/videos/play/wwdc2019/233/)
 * [Protocol-Oriented Programming in Swift](https://developer.apple.com/videos/play/wwdc2015/408/)
 * [Building Better Apps with Value Types in Swift](https://developer.apple.com/videos/play/wwdc2015/414)
