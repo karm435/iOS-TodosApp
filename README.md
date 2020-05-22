@@ -1,5 +1,20 @@
 # iOS-TodosApp
 
+## Features
+
+* Create a new Todo
+* Context menu to Complete or Delete a Todo
+
+### upcoming
+
+* Show completed tasks
+* Add Priority
+* Add Date
+* Add Location
+* Add Notification
+
+# Learning path
+
 This is the very first Swift app after learning for 2 weeks straight. 
 
 So I would like to share the journy and what did I do to achieve this Goal. 
