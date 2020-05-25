@@ -44,7 +44,7 @@ struct TodoContextMenu: View {
 
 struct TodoContextMenu_Previews: PreviewProvider {
     static var previews: some View {
-        TodoContextMenu(todo: Todo(id: 0, task: "Todo", isCompleted: false))
+        TodoContextMenu(todo: Todo.Default)
         .environmentObject(UserData())
     }
 }

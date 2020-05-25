@@ -25,6 +25,6 @@ struct CompletedTodoRow: View {
 
 struct CompletedTodoRow_Previews: PreviewProvider {
     static var previews: some View {
-        CompletedTodoRow(todo: Todo(id: 0, task: "Completed Task", isCompleted: true))
+        CompletedTodoRow(todo: Todo.Default)
     }
 }

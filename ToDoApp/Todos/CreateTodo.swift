@@ -2,52 +2,64 @@
 //  CreateTodo.swift
 //  ToDoApp
 //
-//  Created by karmjit singh on 19/5/20.
+//  Created by karmjit singh on 25/5/20.
 //  Copyright © 2020 karmjit singh. All rights reserved.
 //
 
 import SwiftUI
 
 struct CreateTodo: View {
-    @State var todoTask: String = ""
+    @State var todo: Todo
     @EnvironmentObject var userData: UserData
     
     var body: some View {
-        List {
-            HStack {
-                TextField("Describe task: ", text: $todoTask)
+        VStack {
+            HStack(alignment: .center){
+                
                 Spacer()
                 Button(action: {
-                    self.addTodo(task: self.todoTask)
-                    self.todoTask = ""
-                }, label: {Text("Add")})
-                .disabled(todoTask == "")
+                    let nextId = self.userData.todos.count + 1
+                    self.todo.id = nextId
+                    self.userData.todos.append(self.todo)
+                    
+                }, label: {
+                    Text("Save")
+                })
+                    .disabled(self.todo.task.isEmpty)
             }
-            .padding()
             
+            TextField("Task", text: $todo.task)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
             
-            ForEach(userData.todos) { todo in
-                if !todo.isCompleted {
-                    TodoRow(todo: todo)
-                }
+            VStack(alignment: .leading, spacing: 20){
+                Text("Priority")
+                
+                Picker(selection: $todo.priority, label: Text("Priority"), content: {
+                    Text("!").tag(TaskPriority.hightest)
+                    Text("!!").tag(TaskPriority.high)
+                    Text("!!!").tag(TaskPriority.lowest)
+                    Text("!!!!").tag(TaskPriority.none)
+                }).pickerStyle(SegmentedPickerStyle())
             }
-           
+            .padding(.top)
             
+            VStack(alignment: .leading, spacing: 20){
+                Text("Due Date")
+                
+                DatePicker(selection: $todo.dueDate, label: { Text("Due Date") })
+            }
+            .padding(.top)
             Spacer()
-            .edgesIgnoringSafeArea(.top)
+            
         }
-    }
-    
-    func addTodo(task: String){
-        let nextId = self.userData.todos.count + 1
-        
-        self.userData.todos.append(Todo(id: nextId, task: task, isCompleted: false))
+        .padding()
+        .navigationBarTitle(Text("Create Todo"))
     }
 }
 
 struct CreateTodo_Previews: PreviewProvider {
     static var previews: some View {
-        CreateTodo(todoTask: "")
+        CreateTodo(todo: Todo.Default)
         .environmentObject(UserData())
     }
 }
