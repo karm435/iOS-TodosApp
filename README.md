@@ -5,13 +5,13 @@
 * Create a new Todo
 * Context menu to Complete or Delete a Todo
 * Show completed tasks
-
-### upcoming
 * Add Priority
 * Add Date
-* Add Location
-* Add Notification
+
+### upcoming
 * Persist the data
+* Add Notification
+* Add Location
 * Login functionality - B2C
 
 # Learning path
