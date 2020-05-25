@@ -11,7 +11,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            CreateTodo()
+            TodosList()
                 .tabItem {
                     Image(systemName: "pencil.and.ellipsis.rectangle")
                     Text("Todos")

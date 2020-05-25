@@ -29,6 +29,6 @@ struct TodoRow: View {
 
 struct TodoRow_Previews: PreviewProvider {
     static var previews: some View {
-        TodoRow(todo: Todo(id: 0, task: "Test", isCompleted: false))
+        TodoRow(todo: Todo.Default)
     }
 }
