@@ -18,6 +18,7 @@ struct CompletedTodoRow: View {
                 .lineLimit(1)
                 .padding()
             Spacer()
+            Text(todo.priority.rawValue)
         }
     }
 }

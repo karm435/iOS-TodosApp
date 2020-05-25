@@ -23,6 +23,7 @@ struct TodoRow: View {
                     TodoContextMenu(todo: todo)
                 })
             Spacer()
+            Text(todo.priority.rawValue)
         }
     }
 }

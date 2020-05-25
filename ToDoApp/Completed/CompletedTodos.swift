@@ -19,7 +19,7 @@ struct CompletedTodos: View {
                 }
             }
             Spacer()
-            
+
             .edgesIgnoringSafeArea(.top)
         }
     }
