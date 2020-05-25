@@ -23,16 +23,15 @@ struct TodosList: View {
                 }
                 
                 Spacer()
-                    .edgesIgnoringSafeArea(.top)
             }
+            .navigationBarTitle(Text("Todos"))
         }
-        .navigationBarTitle(Text("Todos"))
     }
 }
 
 struct TodosList_Previews: PreviewProvider {
     static var previews: some View {
         TodosList()
-        .environmentObject(UserData())
+            .environmentObject(UserData())
     }
 }
