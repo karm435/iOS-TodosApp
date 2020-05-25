@@ -10,23 +10,29 @@ import SwiftUI
 
 struct CreateTodo: View {
     @State var todo: Todo
+    @State var saved: Bool = false
     @EnvironmentObject var userData: UserData
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack {
             HStack(alignment: .center){
-                
                 Spacer()
                 Button(action: {
                     let nextId = self.userData.todos.count + 1
                     self.todo.id = nextId
                     self.userData.todos.append(self.todo)
-                    
+                    self.saved = true
                 }, label: {
                     Text("Save")
                 })
                     .disabled(self.todo.task.isEmpty)
             }
+            .alert(isPresented: self.$saved, content: {
+                Alert(title: Text("Success"), message: Text("Todo created successfully with \(self.todo.priority.name) and due by \(self.todo.dueDate)"), dismissButton: .cancel(Text("Ok"), action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }))
+            })
             
             TextField("Task", text: $todo.task)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -60,6 +66,6 @@ struct CreateTodo: View {
 struct CreateTodo_Previews: PreviewProvider {
     static var previews: some View {
         CreateTodo(todo: Todo.Default)
-        .environmentObject(UserData())
+            .environmentObject(UserData())
     }
 }
