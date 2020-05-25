@@ -20,6 +20,7 @@
 		AE0C0FCB2473BB4D008804FA /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0C0FCA2473BB4D008804FA /* UserData.swift */; };
 		AEEF3B4A247B53680057ECA8 /* CreateTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF3B49247B53680057ECA8 /* CreateTodo.swift */; };
 		AEEF3B4C247B54E60057ECA8 /* TaskPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF3B4B247B54E60057ECA8 /* TaskPriority.swift */; };
+		AEEF3B4F247B8FF10057ECA8 /* DateExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF3B4E247B8FF10057ECA8 /* DateExtenstions.swift */; };
 		AEF151B624777272004966A6 /* TodoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF151B524777272004966A6 /* TodoRow.swift */; };
 		AEF151B82477876A004966A6 /* TodoContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF151B72477876A004966A6 /* TodoContextMenu.swift */; };
 		AEF151BA2477951C004966A6 /* CompletedTodoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF151B92477951C004966A6 /* CompletedTodoRow.swift */; };
@@ -53,6 +54,7 @@
 		AE0C0FCA2473BB4D008804FA /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		AEEF3B49247B53680057ECA8 /* CreateTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTodo.swift; sourceTree = "<group>"; };
 		AEEF3B4B247B54E60057ECA8 /* TaskPriority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPriority.swift; sourceTree = "<group>"; };
+		AEEF3B4E247B8FF10057ECA8 /* DateExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtenstions.swift; sourceTree = "<group>"; };
 		AEF151B524777272004966A6 /* TodoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRow.swift; sourceTree = "<group>"; };
 		AEF151B72477876A004966A6 /* TodoContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoContextMenu.swift; sourceTree = "<group>"; };
 		AEF151B92477951C004966A6 /* CompletedTodoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTodoRow.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		AE0C0F9E2473B0E1008804FA /* ToDoApp */ = {
 			isa = PBXGroup;
 			children = (
+				AEEF3B4D247B84910057ECA8 /* Extensions */,
 				AE0C0FC72473BA1E008804FA /* Models */,
 				AE0C0FC42473B674008804FA /* Completed */,
 				AE0C0FC12473B64A008804FA /* Todos */,
@@ -156,6 +159,14 @@
 				AEEF3B4B247B54E60057ECA8 /* TaskPriority.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		AEEF3B4D247B84910057ECA8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AEEF3B4E247B8FF10057ECA8 /* DateExtenstions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +279,7 @@
 				AE0C0FA22473B0E1008804FA /* SceneDelegate.swift in Sources */,
 				AEF151B82477876A004966A6 /* TodoContextMenu.swift in Sources */,
 				AEEF3B4A247B53680057ECA8 /* CreateTodo.swift in Sources */,
+				AEEF3B4F247B8FF10057ECA8 /* DateExtenstions.swift in Sources */,
 				AEF151B624777272004966A6 /* TodoRow.swift in Sources */,
 				AEEF3B4C247B54E60057ECA8 /* TaskPriority.swift in Sources */,
 				AE0C0FA42473B0E1008804FA /* ContentView.swift in Sources */,

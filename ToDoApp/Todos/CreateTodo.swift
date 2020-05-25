@@ -29,7 +29,7 @@ struct CreateTodo: View {
                     .disabled(self.todo.task.isEmpty)
             }
             .alert(isPresented: self.$saved, content: {
-                Alert(title: Text("Success"), message: Text("Todo created successfully with \(self.todo.priority.name) and due by \(self.todo.dueDate)"), dismissButton: .cancel(Text("Ok"), action: {
+                Alert(title: Text("Success"), message: Text("Todo created successfully with \(self.todo.priority.name) and due by \(self.todo.dueDate.ShortDate)"), dismissButton: .cancel(Text("Ok"), action: {
                     self.presentationMode.wrappedValue.dismiss()
                 }))
             })
