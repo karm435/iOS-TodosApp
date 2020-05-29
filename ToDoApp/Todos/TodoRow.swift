@@ -15,8 +15,9 @@ struct TodoRow: View {
         
         VStack(alignment: .leading) {
             Text(self.todo.wrappedTask)
+                .font(.headline)
             Text("Due by: \(todo.wrappedDueDate.ShortDate)")
-                .font(.subheadline)
+                .font(.footnote)
         }
     }
 }

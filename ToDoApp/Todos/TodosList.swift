@@ -31,7 +31,9 @@ struct TodosList: View {
             }
             .navigationBarTitle(Text("Todos"))
             .navigationBarItems(trailing: EditButton())
-            .sheet(isPresented: self.$showCreate, content: { CreateTodo() })
+            .sheet(isPresented: self.$showCreate){
+                CreateTodo().environment(\.managedObjectContext, self.moc)
+            }
             .listStyle(GroupedListStyle())
         }
         
