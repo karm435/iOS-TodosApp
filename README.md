@@ -7,9 +7,10 @@
 * Show completed tasks
 * Add Priority
 * Add Date
+* Persist the data
 
 ### upcoming
-* Persist the data
+* filter data
 * Add Notification
 * Add Location
 * Login functionality - B2C
