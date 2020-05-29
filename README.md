@@ -8,12 +8,17 @@
 * Add Priority
 * Add Date
 * Persist the data
+* Filter data
 
 ### upcoming
-* filter data
+* Edit the todo - Update/Delete/Compelete
+* Touch up UI and add some validations like due date cannot be in past.
+* Categories the Todos
 * Add Notification
-* Add Location
+* Add Location - Reminder based on location
 * Login functionality - B2C
+* Cloud Sync using CloudKit
+
 
 # Learning path
 
