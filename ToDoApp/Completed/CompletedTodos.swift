@@ -9,25 +9,17 @@
 import SwiftUI
 
 struct CompletedTodos: View {
-    @EnvironmentObject var userData: UserData
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(entity: Todo.entity(), sortDescriptors: [], predicate: nil) var completedTodos: FetchedResults<Todo>
+    
     
     var body: some View {
         List {
-            ForEach(self.userData.todos){ todo in
-                if todo.isCompleted {
+            ForEach(self.completedTodos, id:\.id){ todo in
                     CompletedTodoRow(todo: todo)
-                }
             }
-            Spacer()
             
             .edgesIgnoringSafeArea(.top)
         }
-    }
-}
-
-struct CompletedTodos_Previews: PreviewProvider {
-    static var previews: some View {
-        CompletedTodos()
-        .environmentObject(UserData())
     }
 }

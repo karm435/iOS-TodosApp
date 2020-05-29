@@ -5,13 +5,35 @@
 //  Created by karmjit singh on 19/5/20.
 //  Copyright © 2020 karmjit singh. All rights reserved.
 //
-
+import CoreData
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "Todo")
+        container.loadPersistentStores { description, error in
+            if let error = error {
+                fatalError("Unable to load perisstent stores: \(error)")
+            }
+        }
+        return container
+    }()
 
-
+    
+    func saveContext() {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unrsolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+        
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -31,7 +53,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
 }
 

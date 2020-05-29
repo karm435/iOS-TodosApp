@@ -14,17 +14,9 @@ struct CompletedTodoRow: View {
         HStack {
             Image(systemName: "checkmark.seal.fill")
                 .padding()
-            Text(todo.task)
+            Text(todo.wrappedTask)
                 .lineLimit(1)
                 .padding()
-            Spacer()
         }
-    }
-}
-
-
-struct CompletedTodoRow_Previews: PreviewProvider {
-    static var previews: some View {
-        CompletedTodoRow(todo: Todo.Default)
     }
 }

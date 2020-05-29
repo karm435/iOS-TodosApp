@@ -7,32 +7,35 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct TodosList: View {
-    @EnvironmentObject var userData: UserData
+    @State var showCreate = false
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(entity: Todo.entity(), sortDescriptors: [], predicate: nil) var todos: FetchedResults<Todo>
     
     var body: some View {
-        NavigationView{
-            List {
-                NavigationLink(destination: CreateTodo(todo: Todo.Default), label: {Text("+")})
-                
-                ForEach(userData.todos) { todo in
-                    if !todo.isCompleted {
-                        TodoRow(todo: todo)
-                    }
+        NavigationView {
+            List{
+                Section {
+                    Button(action: {
+                        self.showCreate = true
+                    }, label: { Text("Add Todo") })
                 }
-                
-                Spacer()
-                    .edgesIgnoringSafeArea(.top)
-            }
-        }
-        .navigationBarTitle(Text("Todos"))
-    }
-}
+                Section{
 
-struct TodosList_Previews: PreviewProvider {
-    static var previews: some View {
-        TodosList()
-        .environmentObject(UserData())
+                        ForEach(self.todos, id: \.id) { todo in
+                                TodoRow(todo: todo)
+                        }
+                }
+            }
+            .navigationBarTitle(Text("Todos"))
+            .navigationBarItems(trailing: EditButton())
+            .sheet(isPresented: self.$showCreate){
+                CreateTodo().environment(\.managedObjectContext, self.moc)
+            }
+            .listStyle(GroupedListStyle())
+        }
+        
     }
 }
