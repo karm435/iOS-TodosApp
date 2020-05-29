@@ -9,42 +9,41 @@
 import SwiftUI
 
 struct CreateTodo: View {
-    @State var todo: Todo
+    @State var taskDescription: String = ""
+    @State var dueDate: Date = .init()
+    @State var priority: TaskPriority = .hightest
     @State var saved: Bool = false
-    @EnvironmentObject var userData: UserData
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) var moc
     
     var body: some View {
         VStack {
             HStack(alignment: .center){
                 Spacer()
                 Button(action: {
-                    let nextId = self.userData.todos.count + 1
-                    self.todo.id = nextId
-                    self.userData.todos.append(self.todo)
-                    self.saved = true
+                    self.addTodo()
                 }, label: {
                     Text("Save")
                 })
-                    .disabled(self.todo.task.isEmpty)
+                    .disabled(self.taskDescription.isEmpty)
             }
             .alert(isPresented: self.$saved, content: {
-                Alert(title: Text("Success"), message: Text("Todo created successfully with \(self.todo.priority.name) and due by \(self.todo.dueDate.ShortDate)"), dismissButton: .cancel(Text("Ok"), action: {
+                Alert(title: Text("Success"), message: Text("Todo created successfully with \(self.priority.name) and due by \(self.dueDate.ShortDate)"), dismissButton: .cancel(Text("Ok"), action: {
                     self.presentationMode.wrappedValue.dismiss()
                 }))
             })
             
-            TextField("Task", text: $todo.task)
+            TextField("Task", text: self.$taskDescription)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
             VStack(alignment: .leading, spacing: 20){
                 Text("Priority")
                 
-                Picker(selection: $todo.priority, label: Text("Priority"), content: {
-                    Text("!").tag(TaskPriority.hightest)
-                    Text("!!").tag(TaskPriority.high)
-                    Text("!!!").tag(TaskPriority.lowest)
-                    Text("!!!!").tag(TaskPriority.none)
+                Picker(selection: self.$priority, label: Text("Priority"), content: {
+                    ForEach(TaskPriority.allCases, id: \.self){ priority in
+                        Text("\(priority.name)").tag(priority)
+                        
+                    }
                 }).pickerStyle(SegmentedPickerStyle())
             }
             .padding(.top)
@@ -52,7 +51,7 @@ struct CreateTodo: View {
             VStack(alignment: .leading, spacing: 20){
                 Text("Due Date")
                 
-                DatePicker(selection: $todo.dueDate, label: { Text("Due Date") })
+                DatePicker(selection: self.$dueDate, label: { Text("Due Date") })
             }
             .padding(.top)
             Spacer()
@@ -61,11 +60,16 @@ struct CreateTodo: View {
         .padding()
         .navigationBarTitle(Text("Create Todo"))
     }
-}
-
-struct CreateTodo_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateTodo(todo: Todo.Default)
-            .environmentObject(UserData())
+    
+    func addTodo(){
+        let todo: Todo = Todo(context: self.moc)
+        todo.dueDate = self.dueDate
+        todo.isCompleted = false
+        todo.taskPriority = self.priority
+        todo.task = self.taskDescription
+        
+        try? moc.save()
+        
+        self.saved = true
     }
 }

@@ -8,17 +8,12 @@
 
 import Foundation
 
-enum TaskPriority: String, CaseIterable, Hashable {
-    case hightest = "!"
-    case high = "!!"
-    case lowest = "!!!"
-    case none = "!!!!"
+enum TaskPriority: Int16, CaseIterable, Hashable {
+    case hightest = 1
+    case high
+    case lowest
     
     var name: String {
-        get {return String(describing: self)}
-    }
-    
-    var dispalyName: String {
         switch self {
         case .hightest:
             return "!"
@@ -26,8 +21,6 @@ enum TaskPriority: String, CaseIterable, Hashable {
             return "!!"
         case .lowest:
             return "!!!"
-        case .none:
-            return "!!!!"
         }
     }
 }
