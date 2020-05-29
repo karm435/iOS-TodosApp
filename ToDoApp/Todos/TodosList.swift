@@ -12,7 +12,7 @@ import CoreData
 struct TodosList: View {
     @State var showCreate = false
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(entity: Todo.entity(), sortDescriptors: [], predicate: nil) var todos: FetchedResults<Todo>
+    @FetchRequest(entity: Todo.entity(), sortDescriptors: [], predicate: NSPredicate(format: "NOT isCompleted == TRUE", false)) var todos: FetchedResults<Todo>
     
     var body: some View {
         NavigationView {

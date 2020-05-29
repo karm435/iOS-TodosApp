@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CompletedTodos: View {
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(entity: Todo.entity(), sortDescriptors: [], predicate: nil) var completedTodos: FetchedResults<Todo>
+    @FetchRequest(entity: Todo.entity(), sortDescriptors: [], predicate: NSPredicate(format: "isCompleted == TRUE")) var completedTodos: FetchedResults<Todo>
     
     
     var body: some View {
