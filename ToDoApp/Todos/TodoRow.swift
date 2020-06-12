@@ -31,7 +31,12 @@ struct TodoRow: View {
     }
     
     func markTodoCompleted() {
-        self.todo.isCompleted = true;
+        self.moc.performAndWait {
+            self.todo.isCompleted = true;
+            
+            try? self.moc.save()
+        }
+        
     }
 }
 
