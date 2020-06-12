@@ -16,25 +16,39 @@ struct TodosList: View {
     
     var body: some View {
         NavigationView {
-            List{
-                Section {
-                    Button(action: {
-                        self.showCreate = true
-                    }, label: { Text("Add Todo") })
-                }
-                Section{
-
+            ZStack {
+                List{
+                    Section{
                         ForEach(self.todos, id: \.id) { todo in
-                                TodoRow(todo: todo)
+                            TodoRow(todo: todo)
                         }
+                    }
+                }
+                .navigationBarTitle(Text("Todos"))
+                .navigationBarItems(trailing: EditButton())
+                .sheet(isPresented: self.$showCreate){
+                    CreateTodo().environment(\.managedObjectContext, self.moc)
+                }
+                .listStyle(GroupedListStyle())
+                
+                VStack(alignment:.trailing){
+                    
+                    Spacer()
+                    HStack(alignment: .bottom){
+                        Spacer()
+                        Button(action: {
+                            self.showCreate = true
+                        }) {
+                            Image(systemName: "plus")
+                                .foregroundColor(Color.white)
+                        }.padding()
+                            .background(Color.green)
+                            .mask(Circle())
+                            .frame(width: 60, height: 60)
+                    }
+                    .padding()
                 }
             }
-            .navigationBarTitle(Text("Todos"))
-            .navigationBarItems(trailing: EditButton())
-            .sheet(isPresented: self.$showCreate){
-                CreateTodo().environment(\.managedObjectContext, self.moc)
-            }
-            .listStyle(GroupedListStyle())
         }
         
     }
