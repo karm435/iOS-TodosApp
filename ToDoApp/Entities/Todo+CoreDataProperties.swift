@@ -24,11 +24,11 @@ extension Todo {
     @NSManaged public var task: String?
     
     var wrappedDueDate : Date {
-        dueDate ?? .init()
+        self.dueDate ?? .init()
     }
     
     var wrappedTask : String {
-        task ?? ""
+        self.task ?? ""
     }
     
     var taskPriority: TaskPriority {

@@ -18,22 +18,10 @@ struct CreateTodo: View {
     
     var body: some View {
         VStack {
-            HStack(alignment: .center){
-                Spacer()
-                Button(action: {
-                    self.addTodo()
-                }, label: {
-                    Text("Save")
-                })
-                    .disabled(self.taskDescription.isEmpty)
-            }
-            .alert(isPresented: self.$saved, content: {
-                Alert(title: Text("Success"), message: Text("Todo created successfully with \(self.priority.name) and due by \(self.dueDate.ShortDate)"), dismissButton: .cancel(Text("Ok"), action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }))
-            })
+            Spacer().frame(height: 10)
             
             TextField("Task", text: self.$taskDescription)
+            .frame(minHeight: 80)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
             VStack(alignment: .leading, spacing: 20){
@@ -46,14 +34,35 @@ struct CreateTodo: View {
                     }
                 }).pickerStyle(SegmentedPickerStyle())
             }
-            .padding(.top)
+            .padding()
             
             VStack(alignment: .leading, spacing: 20){
                 Text("Due Date")
                 
-                DatePicker(selection: self.$dueDate, label: { Text("Due Date") })
+                DatePicker(selection: self.$dueDate, label: { Text("") })
             }
-            .padding(.top)
+            .padding()
+            
+            HStack(alignment: .center){
+                Button(action: {
+                    self.addTodo()
+                }, label: {
+                    Text("Save")
+                })
+                .disabled(self.taskDescription.isEmpty)
+                .padding()
+                .frame(minWidth: 0, maxWidth: .infinity)
+                    .background(Capsule().fill( self.taskDescription.isEmpty ? Color.gray : Color.blue))
+                .foregroundColor(Color.white)
+                
+                
+            }
+            .alert(isPresented: self.$saved, content: {
+                Alert(title: Text("Success"), message: Text("Todo created successfully with \(self.priority.name) and due by \(self.dueDate.ShortDate)"), dismissButton: .cancel(Text("Ok"), action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }))
+            })
+            
             Spacer()
             
         }
@@ -67,6 +76,7 @@ struct CreateTodo: View {
         todo.isCompleted = false
         todo.taskPriority = self.priority
         todo.task = self.taskDescription
+        todo.id = UUID()
         
         try? moc.save()
         
