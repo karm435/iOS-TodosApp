@@ -39,7 +39,7 @@ struct CreateTodo: View {
             VStack(alignment: .leading, spacing: 20){
                 Text("Due Date")
                 
-                DatePicker(selection: self.$dueDate, label: { Text("") })
+                DatePicker(selection: self.$dueDate, in: .init()..., label: { Text("") })
             }
             .padding()
             
