@@ -10,6 +10,7 @@ import SwiftUI
 
 struct TodoRow: View {
     var todo: Todo
+    @Environment(\.managedObjectContext) var moc
     
     var body: some View {
         
@@ -19,6 +20,18 @@ struct TodoRow: View {
             Text("Due by: \(todo.wrappedDueDate.ShortDate)")
                 .font(.footnote)
         }
+        .contextMenu {
+            Button(action: {
+                self.markTodoCompleted()
+            }){
+                Text("Completed")
+                    .foregroundColor(.green)
+            }
+        }
+    }
+    
+    func markTodoCompleted() {
+        self.todo.isCompleted = true;
     }
 }
 

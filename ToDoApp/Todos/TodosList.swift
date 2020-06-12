@@ -18,9 +18,14 @@ struct TodosList: View {
         NavigationView {
             ZStack {
                 List{
-                    Section{
+                    Section {
                         ForEach(self.todos, id: \.id) { todo in
                             TodoRow(todo: todo)
+                        }
+                        .onDelete { indexSet in
+                            for index in indexSet {
+                                self.moc.delete(self.todos[index])
+                            }
                         }
                     }
                 }

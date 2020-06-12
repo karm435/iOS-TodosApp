@@ -76,6 +76,7 @@ struct CreateTodo: View {
         todo.isCompleted = false
         todo.taskPriority = self.priority
         todo.task = self.taskDescription
+        todo.id = UUID()
         
         try? moc.save()
         

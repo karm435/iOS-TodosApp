@@ -17,7 +17,7 @@ struct TextArea: UIViewRepresentable {
         view.isScrollEnabled = true
         view.isEditable = true
         view.isUserInteractionEnabled = true
-        view.layer.borderWidth = 1
+        view.layer.borderWidth = 1.0
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.cornerRadius = 10
         return view
