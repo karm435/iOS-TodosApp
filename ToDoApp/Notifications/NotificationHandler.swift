@@ -13,6 +13,7 @@ struct NotificationHandler {
     
     public static func askForPermission() {
         let notificationCenter = UNUserNotificationCenter.current()
+        
         notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if let error = error {
                 print(error)
@@ -67,7 +68,7 @@ struct NotificationHandler {
     
     private static func buildTaskTimeNotification(todo: Todo) -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
-        content.title = "\(todo.taskPriority.rawValue.description) Task due by \(todo.wrappedDueDate.ShortDate)"
+        content.title = "\(todo.taskPriority.name) is due now"
         content.body = todo.wrappedTask
         content.sound = UNNotificationSound.default
         return content
