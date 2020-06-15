@@ -15,11 +15,10 @@ struct CreateTodo: View {
     @State var saved: Bool = false
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var moc
+    var isItTheFirstTask: Bool = false
     
     var body: some View {
         VStack {
-            Spacer().frame(height: 10)
-            
             TextField("Task", text: self.$taskDescription)
             .frame(minHeight: 80)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -59,7 +58,7 @@ struct CreateTodo: View {
             }
             .alert(isPresented: self.$saved, content: {
                 Alert(title: Text("Success"), message: Text("Todo created successfully with \(self.priority.name) and due by \(self.dueDate.ShortDate)"), dismissButton: .cancel(Text("Ok"), action: {
-                    self.presentationMode.wrappedValue.dismiss()
+                    self.afterSave()
                 }))
             })
             
@@ -68,6 +67,14 @@ struct CreateTodo: View {
         }
         .padding()
         .navigationBarTitle(Text("Create Todo"))
+    }
+    
+    
+    func afterSave(){
+        if isItTheFirstTask {
+            NotificationHandler.askForPermission()
+        }
+        self.presentationMode.wrappedValue.dismiss()
     }
     
     func addTodo(){

@@ -32,7 +32,7 @@ struct TodosList: View {
                 .navigationBarTitle(Text("Todos"))
                 .navigationBarItems(trailing: EditButton())
                 .sheet(isPresented: self.$showCreate){
-                    CreateTodo().environment(\.managedObjectContext, self.moc)
+                    CreateTodo(isItTheFirstTask: self.todos.count > 0).environment(\.managedObjectContext, self.moc)
                 }
                 .listStyle(GroupedListStyle())
                 
