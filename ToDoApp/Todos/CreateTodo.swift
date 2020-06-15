@@ -18,8 +18,6 @@ struct CreateTodo: View {
     
     var body: some View {
         VStack {
-            Spacer().frame(height: 10)
-            
             TextField("Task", text: self.$taskDescription)
             .frame(minHeight: 80)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -59,7 +57,7 @@ struct CreateTodo: View {
             }
             .alert(isPresented: self.$saved, content: {
                 Alert(title: Text("Success"), message: Text("Todo created successfully with \(self.priority.name) and due by \(self.dueDate.ShortDate)"), dismissButton: .cancel(Text("Ok"), action: {
-                    self.presentationMode.wrappedValue.dismiss()
+                   self.presentationMode.wrappedValue.dismiss()
                 }))
             })
             
@@ -70,16 +68,26 @@ struct CreateTodo: View {
         .navigationBarTitle(Text("Create Todo"))
     }
     
+    
+    func afterSave(for todo: Todo){
+        
+        NotificationHandler.askForPermission()
+        
+        NotificationHandler.registerNotificationRequest(for: todo)
+    }
+    
     func addTodo(){
         let todo: Todo = Todo(context: self.moc)
-        todo.dueDate = self.dueDate
-        todo.isCompleted = false
-        todo.taskPriority = self.priority
-        todo.task = self.taskDescription
-        todo.id = UUID()
-        
-        try? moc.save()
-        
+        self.moc.performAndWait {
+            todo.dueDate = self.dueDate
+            todo.isCompleted = false
+            todo.taskPriority = self.priority
+            todo.task = self.taskDescription
+            todo.id = UUID()
+            
+            try? moc.save()
+        }
+        self.afterSave(for: todo)
         self.saved = true
     }
 }

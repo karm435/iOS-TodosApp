@@ -16,6 +16,7 @@
 		AE0C0FB72473B0E4008804FA /* ToDoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0C0FB62473B0E4008804FA /* ToDoAppTests.swift */; };
 		AE0C0FC32473B65D008804FA /* TodosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0C0FC22473B65D008804FA /* TodosList.swift */; };
 		AE0C0FC62473B685008804FA /* CompletedTodos.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0C0FC52473B685008804FA /* CompletedTodos.swift */; };
+		AEB06FA02497035B001CA256 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB06F9F2497035B001CA256 /* NotificationHandler.swift */; };
 		AEEF3B4A247B53680057ECA8 /* CreateTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF3B49247B53680057ECA8 /* CreateTodo.swift */; };
 		AEEF3B4C247B54E60057ECA8 /* TaskPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF3B4B247B54E60057ECA8 /* TaskPriority.swift */; };
 		AEEF3B4F247B8FF10057ECA8 /* DateExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF3B4E247B8FF10057ECA8 /* DateExtenstions.swift */; };
@@ -51,6 +52,7 @@
 		AE0C0FB82473B0E4008804FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE0C0FC22473B65D008804FA /* TodosList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosList.swift; sourceTree = "<group>"; };
 		AE0C0FC52473B685008804FA /* CompletedTodos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTodos.swift; sourceTree = "<group>"; };
+		AEB06F9F2497035B001CA256 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		AEEF3B49247B53680057ECA8 /* CreateTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTodo.swift; sourceTree = "<group>"; };
 		AEEF3B4B247B54E60057ECA8 /* TaskPriority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPriority.swift; sourceTree = "<group>"; };
 		AEEF3B4E247B8FF10057ECA8 /* DateExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtenstions.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		AE0C0F9E2473B0E1008804FA /* ToDoApp */ = {
 			isa = PBXGroup;
 			children = (
+				AEB06F9E24970347001CA256 /* Notifications */,
 				AEEF3C2D249309370057ECA8 /* ComposedUIKit */,
 				AEEF3B842480B8CC0057ECA8 /* Entities */,
 				AEEF3B50247CD7230057ECA8 /* Todo.xcdatamodeld */,
@@ -161,6 +164,14 @@
 				AEEF3B4B247B54E60057ECA8 /* TaskPriority.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		AEB06F9E24970347001CA256 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				AEB06F9F2497035B001CA256 /* NotificationHandler.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		AEEF3B4D247B84910057ECA8 /* Extensions */ = {
@@ -296,6 +307,7 @@
 				AE0C0FC62473B685008804FA /* CompletedTodos.swift in Sources */,
 				AEF151BA2477951C004966A6 /* CompletedTodoRow.swift in Sources */,
 				AE0C0FC32473B65D008804FA /* TodosList.swift in Sources */,
+				AEB06FA02497035B001CA256 /* NotificationHandler.swift in Sources */,
 				AE0C0FA22473B0E1008804FA /* SceneDelegate.swift in Sources */,
 				AEEF3B4A247B53680057ECA8 /* CreateTodo.swift in Sources */,
 				AEEF3B4F247B8FF10057ECA8 /* DateExtenstions.swift in Sources */,

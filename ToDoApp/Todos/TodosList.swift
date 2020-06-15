@@ -23,9 +23,13 @@ struct TodosList: View {
                             TodoRow(todo: todo)
                         }
                         .onDelete { indexSet in
+                            
                             for index in indexSet {
+                                NotificationHandler.removeNotificationRequest(for: self.todos[index].id!)
+                                
                                 self.moc.delete(self.todos[index])
                             }
+                            
                         }
                     }
                 }

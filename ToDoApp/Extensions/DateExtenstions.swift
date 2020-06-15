@@ -12,7 +12,7 @@ extension Date {
     var ShortDate: String {
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
+        dateFormatter.timeStyle = .short
         return dateFormatter.string(from: self)
     }
 }
