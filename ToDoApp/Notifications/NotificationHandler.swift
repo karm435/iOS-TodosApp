@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct NotificationHandler {
     
@@ -17,38 +18,39 @@ struct NotificationHandler {
                 print(error)
                 //handle the error here
             }
+            else {
+                // Enable ot disable the features based on the authorization
+                print("Success")
+            }
             
-            // Enable ot disable the features based on the authorization
         }
     }
     
-    public static func removeNotificationRequest(identifier: String){
+    public static func removeNotificationRequest(for identifier: UUID){
         let notificationCenter = UNUserNotificationCenter.current()
         
-        notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier.uuidString])
     }
     
-    public static func registerNotificationRequest(todo: Todo) {
+    public static func registerNotificationRequest(for todo: Todo) {
         let notificationCenter = UNUserNotificationCenter.current()
         
         notificationCenter.getNotificationSettings() { settings in
             guard (settings.authorizationStatus == .authorized) ||
                 (settings.authorizationStatus == .provisional) else { return }
             
-             let requestId  = UUID().uuidString
+            let requestId  = todo.id!.uuidString
             
             let reuest = UNNotificationRequest(identifier: requestId, content: buildTaskTimeNotification(todo: todo), trigger: buildTrigger(todo: todo))
             
-            if settings.alertSetting == .enabled {
-                notificationCenter.add(reuest) { error in
-                    if error != nil {
-                        print(error!)
-                    }
+            
+            print("scheduling alert")
+            notificationCenter.add(reuest) { error in
+                if error != nil {
+                    print(error!)
                 }
-                //schedule an alert only notification
-            } else {
-                // schedule a notification with a badge and sound
             }
+            
         }
     }
     
@@ -67,6 +69,7 @@ struct NotificationHandler {
         let content = UNMutableNotificationContent()
         content.title = "\(todo.taskPriority.rawValue.description) Task due by \(todo.wrappedDueDate.ShortDate)"
         content.body = todo.wrappedTask
+        content.sound = UNNotificationSound.default
         return content
     }
 }

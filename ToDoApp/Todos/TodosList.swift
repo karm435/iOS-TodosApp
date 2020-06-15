@@ -23,16 +23,20 @@ struct TodosList: View {
                             TodoRow(todo: todo)
                         }
                         .onDelete { indexSet in
+                            
                             for index in indexSet {
+                                NotificationHandler.removeNotificationRequest(for: self.todos[index].id!)
+                                
                                 self.moc.delete(self.todos[index])
                             }
+                            
                         }
                     }
                 }
                 .navigationBarTitle(Text("Todos"))
                 .navigationBarItems(trailing: EditButton())
                 .sheet(isPresented: self.$showCreate){
-                    CreateTodo(isItTheFirstTask: self.todos.count > 0).environment(\.managedObjectContext, self.moc)
+                    CreateTodo().environment(\.managedObjectContext, self.moc)
                 }
                 .listStyle(GroupedListStyle())
                 

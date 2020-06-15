@@ -15,7 +15,6 @@ struct CreateTodo: View {
     @State var saved: Bool = false
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var moc
-    var isItTheFirstTask: Bool = false
     
     var body: some View {
         VStack {
@@ -58,7 +57,7 @@ struct CreateTodo: View {
             }
             .alert(isPresented: self.$saved, content: {
                 Alert(title: Text("Success"), message: Text("Todo created successfully with \(self.priority.name) and due by \(self.dueDate.ShortDate)"), dismissButton: .cancel(Text("Ok"), action: {
-                    self.afterSave()
+                   self.presentationMode.wrappedValue.dismiss()
                 }))
             })
             
@@ -70,23 +69,25 @@ struct CreateTodo: View {
     }
     
     
-    func afterSave(){
-        if isItTheFirstTask {
-            NotificationHandler.askForPermission()
-        }
-        self.presentationMode.wrappedValue.dismiss()
+    func afterSave(for todo: Todo){
+        
+        NotificationHandler.askForPermission()
+        
+        NotificationHandler.registerNotificationRequest(for: todo)
     }
     
     func addTodo(){
         let todo: Todo = Todo(context: self.moc)
-        todo.dueDate = self.dueDate
-        todo.isCompleted = false
-        todo.taskPriority = self.priority
-        todo.task = self.taskDescription
-        todo.id = UUID()
-        
-        try? moc.save()
-        
+        self.moc.performAndWait {
+            todo.dueDate = self.dueDate
+            todo.isCompleted = false
+            todo.taskPriority = self.priority
+            todo.task = self.taskDescription
+            todo.id = UUID()
+            
+            try? moc.save()
+        }
+        self.afterSave(for: todo)
         self.saved = true
     }
 }
